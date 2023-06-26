@@ -1,0 +1,23 @@
+service: MiawffBlockchain
+
+frameworkVersion: "3"
+
+plugins:
+  - serverless-esbuild
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  profile: myawff
+  region: us-east-1
+  httpApi:
+    cors:
+      allowedOrigins: ["*"]
+      allowedHeaders: ["*"]
+  environment:
+    DB_ENDPOINT: ${ssm:MIAWFF_BLOCKCHAIN_DB_ENDPOINT}
+    DB_USERNAME: ${ssm:MIAWFF_BLOCKCHAIN_DB_USERNAME}
+    DB_PASSWORD: ${ssm:MIAWFF_BLOCKCHAIN_DB_PASSWORD}
+    DB_PORT: ${ssm:DEFAULT_DB_PORT}
+
+functions: ${file(yml/functions.yml)}

@@ -1,0 +1,46 @@
+SignUp:
+  handler: src/lambdas/auth/signUp.handler
+  events:
+    - httpApi:
+        path: /sign-up
+        method: POST
+
+IsSteamAccExists:
+  handler: src/lambdas/isSteamAccExists/isSteamAccExists.handler
+  events:
+    - httpApi:
+        path: /is-steam-exists
+        method: POST
+
+IsUserCredValid:
+  handler: src/lambdas/auth/isUserCredValid.handler
+  events:
+    - httpApi:
+        path: /sign-in
+        method: POST
+
+UpdateLastMatchCode:
+  handler: src/lambdas/updateLastMatchCode/updateLastMatchCode.handler
+  events:
+    - httpApi:
+        path: /update-last-match-code
+        method: POST
+
+GetWalletBalance:
+  handler: src/lambdas/getWalletBalance/getWalletBalance.handler
+  events:
+    - httpApi:
+        path: /get-wallet-balance
+        method: GET
+
+AddTransactions:
+  handler: src/lambdas/transactions/addTransactions.handler
+  events:
+    - httpApi:
+        path: /add-transactions
+        method: POST
+
+ProcessPendingTransactions:
+  handler: src/lambdas/transactions/processPendingTransactions.handler
+  events:
+    - schedule: rate(1 hour)
